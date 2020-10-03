@@ -1,0 +1,9 @@
+tr[clicable]
+{
+    cursor: pointer;
+    
+}
+tr[clicable]:hover
+{
+    background-color: #F7FCFC !important ;
+}

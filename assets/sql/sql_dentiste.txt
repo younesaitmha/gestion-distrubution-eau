@@ -1,0 +1,2 @@
+CREATE TABLE Patient(idPatient int not null PRIMARY key AUTO_INCREMENT,CIN varchar(30), nom varchar(50),prenom varchar(50),tele varchar(50),email varchar(50), 
+date_n date, adr varchar(100) , ville varchar(50), region varchar(50), gndere varchar(20), date_v date )
