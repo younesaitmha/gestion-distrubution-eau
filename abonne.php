@@ -1,8 +1,9 @@
 <?php include('header.php')?>
 <?php include('db_connect.php');?>
 <script>
-    var demandes = document.getElementById('demandes');
-    demandes.classList.add("active");
+    var abonne = document.getElementById('abonne');
+    abonne.classList.add("active");
+    </script>
 <?php 
 
 		$sql1 = "SELECT * ,DATE_FORMAT(date_v, '%d/%m/%Y') as date_v FROM patient where 1=1 " ;
@@ -28,8 +29,9 @@
 		$result1 = mysqli_query($connect, $sql1);
 
 ?>
-</script>
+
 <style>
+	
     .form-horizontal * {
     direction: rtl;
     clear: both;
@@ -44,10 +46,10 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-2 col-3">
-			<a href="add-demande.php" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> اضافة طلب </a>
+			<a href="add-abonn.php" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> اضافة مشترك </a>
             </div>
             <div class="col-sm-10 col-9 text-right m-b-20">
-				<h4 class="page-title">طلبات الاشتراك</h4>
+				<h4 class="page-title"> المشتركين</h4>
                 
             </div>
         </div>
@@ -78,7 +80,7 @@
             
         </div>
         <div class="dem-table">
-			<form action="demandes.php" method="POST" autocomplete="off">
+			<form action="patients.php" method="POST" autocomplete="off">
 							<table class="table table-border table-striped" id="example">
 								<thead>
 								<tr>
@@ -99,12 +101,10 @@
 													<td>
 														<input value="<?php echo $Email ?>" name="Email" placeholder="منطقة السكن" type="text" class="form-control" >
 													</td>
-													<td>
-														
-													</td>
+													<td></td>
 													<td>
 													<input class="btn btn-success btn-block"  type="submit" value="بحث"  />
-													<button class="btn btn-warning btn-block" onclick="window.location.href='demandes.php'" type="button">الغاء</button>
+													<button class="btn btn-warning btn-block" onclick="window.location.href='patients.php'" type="button">الغاء</button>
 													</td>
 													
 												
@@ -126,21 +126,20 @@
 											<?php while($row1=mysqli_fetch_array($result1)) {?>
 												
 													<tr clicable >
-													<td style='text-align: center;' data-href="patient_info.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['prenom'] ?></td>
-													<td style='text-align: center;' data-href="patient_info.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['nom'] ?></td>
-													<td style='text-align: center;' data-href="patient_info.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['CIN'] ?></td>
-													<td style='text-align: center; direction: ltr;' data-href="patient_info.php?id=<?php echo $row1['idPatient'] ?>" ><?php echo $row1['tele'] ?></td>
-													<td style='text-align: center;' data-href="patient_info.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['email'] ?></td>
-													<td style='text-align: center;' data-href="patient_info.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['ville'] ?></td>
+													<td style='text-align: center;' data-href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['prenom'] ?></td>
+													<td style='text-align: center;' data-href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['nom'] ?></td>
+													<td style='text-align: center;' data-href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['CIN'] ?></td>
+													<td style='text-align: center; direction: ltr;' data-href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>" ><?php echo $row1['tele'] ?></td>
+													<td style='text-align: center;' data-href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['email'] ?></td>
+													<td style='text-align: center;' data-href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['ville'] ?></td>
 													<td  class="text-right">
 														<div class="dropdown dropdown-action">
 															<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 															<div class="dropdown-menu dropdown-menu-right">
 																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> قبول او رفض </a>
-																<a class="dropdown-item" href="patient_info.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة الطلب </a>
-																<a class="dropdown-item" href="patient_info.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-pencil m-r-5"></i> تعديل الطلب </a>
-																<a class="dropdown-item" type="button" onclick="conf_supp(<?php echo $row1['idPatient']?>)" href="" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> حذف الطلب </a>
-																<a class="dropdown-item" href="patient_info.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة التزام </a>
+																<a class="dropdown-item" href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة الطلب </a>
+																<a class="dropdown-item" href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-pencil m-r-5"></i> تعديل الطلب </a>
+																<a class="dropdown-item" type="button" onclick="conf_supp(<?php echo $row1['idPatient']?>)" href="" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> حذف المشترك </a>
 																
 															</div>
 														</div>

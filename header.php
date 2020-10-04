@@ -62,23 +62,23 @@
                     <ul>
 
                         <li id='title' >
-                            <a href="index.php"><i class="fa fa-dashboard"></i> <span> لوحة التحكم </span></a>
+                            <a href="index.php"><i class="fa fa-dashboard"></i> <span> &nbsp;لوحة التحكم&nbsp; </span></a>
                         </li>
 						
-                        <li id='patients'>
-                            <a href="demandes.php"><i class="fa fa-key"></i> <span> طلبات الاشتراك </span></a>
+                        <li id='demandes'>
+                            <a href="demandes.php"><i class="fa fa-key"></i> <span>&nbsp;طلبات الاشتراك&nbsp;</span></a>
                         </li>
-                        <li id='medicament' >
-                            <a href="medicament.php"><i class="fa fa-user"></i> <span>المشتركين</span></a>
+                        <li id='abonne' >
+                            <a href="abonne.php"><i class="fa fa-user"></i> <span>&nbsp;المشتركين&nbsp;</span></a>
                         </li>
                         <li id='ordonnances' >
-                            <a href="ordonnances.php"><i class="fa fa-calendar-check-o"></i> <span> الفواتير </span></a>
+                            <a href="ordonnances.php"> <i class="fa fa-calendar-check-o"></i> <span> &nbsp;الفواتير&nbsp;  </span></a>
                         </li>
                         <li id='factures'>
-                            <a href="factures.php"><i class="fa fa-money"></i> <span> الديون </span></a>
+                            <a href="factures.php"><i class="fa fa-money"></i> <span> &nbsp;الديون&nbsp; </span></a>
                         </li>
-                        <li id='employes'>
-                            <a href="employes.php"><i class="fa fa-laptop"></i> <span>  المنتجات  </span></a>
+                        <li id='produit'>
+                            <a href="produit.php"><i class="fa fa-laptop"></i> <span> &nbsp; المنتجات&nbsp;  </span></a>
                         </li>
 						
 						

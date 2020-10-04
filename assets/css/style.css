@@ -61,6 +61,9 @@ html {
 	height: 100%;
 	
 }
+.rtl{
+	direction: rtl;
+}
 
 
 
@@ -73,7 +76,7 @@ body {
 	height: 100%;
 }
 body:lang(ar){
-	font-family:'Droid Arabic Kufi'; 
+	font-family:'Droid Arabic Kufi','Rubik'; 
 }
 @font-face {
 	font-family: myFirstFont;
