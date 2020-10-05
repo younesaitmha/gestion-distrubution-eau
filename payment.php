@@ -1,8 +1,8 @@
 <?php include('header.php')?>
 <?php include('db_connect.php');?>
 <script>
-    var demandes = document.getElementById('demandes');
-    demandes.classList.add("active");
+    var payment = document.getElementById('payment');
+    payment.classList.add("active");
 <?php 
 
 		$sql1 = "SELECT * ,DATE_FORMAT(date_v, '%d/%m/%Y') as date_v FROM patient where 1=1 " ;
@@ -44,10 +44,10 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-2 col-3">
-			<a href="add-demande.php" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> اضافة طلب </a>
+			<a href="add-demande.php" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> اضافة اداء </a>
             </div>
             <div class="col-sm-10 col-9 text-right m-b-20">
-				<h4 class="page-title">طلبات الاشتراك</h4>
+				<h4 class="page-title">الأداءات</h4>
                 
             </div>
         </div>
@@ -55,7 +55,7 @@
 
 			<div  class="col-sm-4 col-md-4 dem-table ">
 			
-				<strong style="padding: 5px;" class="chart-title">البحث عن طريق تاريخ طلب الاشتراك</strong>
+				<strong style="padding: 5px;" class="chart-title">البحث عن طريق تاريخ الاداء</strong>
             </div>
 
 		
@@ -82,7 +82,10 @@
 							<table class="table table-border table-striped" id="example">
 								<thead>
 								<tr>
-												
+                                                
+                                                      <td>
+                                                      <input value="<?php echo $Prenom ?>" name="Prenom" placeholder="رقم الاداء" type="text" class="form-control" >
+													</td>
 													<td>
 														<input value="<?php echo $Prenom ?>" name="Prenom" placeholder="الاسم" type="text" class="form-control" >
 													</td>
@@ -99,9 +102,7 @@
 													<td>
 														<input value="<?php echo $Email ?>" name="Email" placeholder="منطقة السكن" type="text" class="form-control" >
 													</td>
-													<td>
-														
-													</td>
+													
 													<td>
 													<input class="btn btn-success btn-block"  type="submit" value="بحث"  />
 													<button class="btn btn-warning btn-block" onclick="window.location.href='demandes.php'" type="button">الغاء</button>
@@ -110,11 +111,12 @@
 												
 										</tr>
 									<tr>
+                                         <th  style='text-align: center;' >رقم الاداء</th>
 										<th  style='text-align: center;' >الاسم</th>
 										<th style='text-align: center;'>النسب</th>
 										<th style='text-align: center;'>رقم  ب.و</th>
 										<th style='text-align: center;'>الهاتف</th>
-										<th style='text-align: center;'> تاريخ تقديم الطلب </th>
+										<th style='text-align: center;'> تاريخ تقديم الاداء </th>
 										<th style='text-align: center;'>منطقة السكن</th>
 										<th style='text-align: center;' class="text-right">اجراء</th>
 										
@@ -127,6 +129,7 @@
 											<?php while($row1=mysqli_fetch_array($result1)) {?>
 												
 												<tr clicable >
+                                                    <td style='text-align: center;' data-href="edit-demande.php?id=<?php echo $row1['idPatient'] ?>">BR25454</td>
 													<td style='text-align: center;' data-href="edit-demande.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['prenom'] ?></td>
 													<td style='text-align: center;' data-href="edit-demande.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['nom'] ?></td>
 													<td style='text-align: center;' data-href="edit-demande.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['CIN'] ?></td>

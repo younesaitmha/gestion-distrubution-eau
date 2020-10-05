@@ -49,19 +49,19 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label >الاسم <span class="text-danger">*</span></label>
-                                        <input id="prenom" name="prenom" class="form-control" type="text">
+                                        <input id="prenom" name="prenom" class="form-control" type="text" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>النسب <span class="text-danger">*</span> </label>
-                                        <input id="nom" name="nom" class="form-control" type="text">
+                                        <input id="nom" name="nom" class="form-control" type="text" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                                 <label>الجنس <span class="text-danger">*</span></label>
-												<select id="sexe" name="sexe" class="form-control ">
+												<select id="sexe" name="sexe" class="form-control " >
 													<option>ذكر</option>
 													<option>انثى</option>
 												</select>
@@ -70,7 +70,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label> رقم البطاقة الوطنية <span class="text-danger">*</span> </label>
-                                        <input  style="direction: ltr;" id="nom" name="nom" class="form-control" type="text">
+                                        <input  style="direction: ltr;" id="nom" name="nom" class="form-control" type="text" required>
                                     </div>
                                 </div>
                             </div>
@@ -80,15 +80,23 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label >العنوان </label>
-                                        <input id="prenom" name="prenom" class="form-control" type="text">
+                                        <input id="prenom" name="prenom" class="form-control" type="text" >
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                                 <label>منطفة السكن <span class="text-danger">*</span> </label>
 												<select id="sexe" name="sexe" class="form-control ">
-													<option>01-أدوز</option>
-													<option>02-البام</option>
+													<option>01-البام</option>
+                                                    <option>02-تاوريرت</option>
+                                                    <option>03-الدفرة</option>
+                                                    <option>04-قدارة ايت غرار</option>
+                                                    <option>05-خريبكة</option>
+                                                    <option>06-المسيرة-السوق</option>
+                                                    <option>07-سابك</option>
+                                                    <option>08-أدوز</option>
+                                                    <option>09-تمشاط</option>
+                                                    
 												</select>
                                     </div>
                                 </div>
@@ -96,13 +104,13 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label> رقم الهاتف  <span class="text-danger">*</span></label>
-                                        <input style="direction: ltr;" id="nom" name="tele" class="form-control" type="text">
+                                        <input style="direction: ltr;" id="nom" name="tele" class="form-control" type="text" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label> البريد الالكتروني </label>
-                                        <input style="direction: ltr;" id="nom" name="nom" class="form-control" type="email">
+                                        <input style="direction: ltr;" id="nom" name="nom" class="form-control" type="email" >
                                     </div>
                                 </div>
                             </div>
@@ -122,10 +130,11 @@
                                         <div class="form-group">
                                             <label>تاريخ تقديم الطلب <span class="text-danger">*</span></span></label>
                                             <div sty class="cal-icon">
-                                                <input style="direction: ltr;" id="date_n" name="date_n"  type="text" class="form-control datetimepicker">
+                                                <input style="direction: ltr;" id="date_n" name="date_n"  type="text" class="form-control datetimepicker" required>
                                             </div>
                                         </div>
                                 </div>
+                                
                                 
                             </div>
                             <!--end row-->
@@ -137,7 +146,7 @@
                                             <label>البطافة الوطنية <span class="text-danger">*</span></label>
                                             <div class="profile-upload">
                                                 <div class="upload-input">
-                                                    <input type="file" class="form-control">
+                                                    <input type="file" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,7 +156,7 @@
                                             <label> الملكية <span class="text-danger">*</span> </label>
                                             <div class="profile-upload">
                                                 <div class="upload-input">
-                                                    <input type="file" class="form-control">
+                                                    <input type="file" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,7 +166,7 @@
                                             <label> التصميم </label>
                                             <div class="profile-upload">
                                                 <div class="upload-input">
-                                                    <input type="file" class="form-control">
+                                                    <input type="file" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,7 +180,7 @@
                                             <label> موافقة المالك <span class="text-danger">*</span> </label>
                                             <div class="profile-upload">
                                                 <div class="upload-input">
-                                                    <input type="file" class="form-control">
+                                                    <input id="owner_app_file" type="file" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -198,16 +207,16 @@
                             
                             
                             <div class="col-sm-3">
-                            <button type="button" class="btn btn-success btn-submit">اداء</button>
+                            <button type="button" class="btn btn-success btn-submit submit-btn">اداء</button>
                             </div>
                             <div class="col-sm-3">
-                            <button type="button" class="btn btn-secondary">طباعة</button>
+                            <button type="button" class="btn btn-secondary submit-btn">طباعة</button>
                             </div>
                             <div class="col-sm-3">
-                            <button type="button" class="btn btn-danger">تحرير</button>
+                            <button type="button" class="btn btn-danger submit-btn">تحرير</button>
                             </div>
                             <div class="col-sm-3">
-                            <button type="button" class="btn btn-primary">اضافة الطلب</button>
+                            <button class="btn btn-primary submit-btn">اضافة الطلب</button>
                             </div>
                      </div>
                             </div>

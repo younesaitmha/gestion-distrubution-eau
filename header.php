@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+    <title>جماعة فم العنصر</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
@@ -68,9 +68,13 @@
                         <li id='demandes'>
                             <a href="demandes.php"><i class="fa fa-key"></i> <span>&nbsp;طلبات الاشتراك&nbsp;</span></a>
                         </li>
+                        <li id='payment'>
+                            <a href="payment.php"><i class="fa fa-money"></i> <span>&nbsp;اداء المعاينة&nbsp;</span></a>
+                        </li>
                         <li id='visit'>
                             <a href="visit.php"><i class="fa fa-eye"></i> <span>&nbsp;معاينة&nbsp;</span></a>
                         </li>
+                        
                         <li id='abonne' >
                             <a href="abonne.php"><i class="fa fa-user"></i> <span>&nbsp;المشتركين&nbsp;</span></a>
                         </li>
