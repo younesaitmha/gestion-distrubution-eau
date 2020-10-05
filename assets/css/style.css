@@ -64,11 +64,21 @@ html {
 .rtl{
 	direction: rtl;
 }
+@font-face {
+	font-family: Droid Arabic Kufi;
+	src: url(assets/fonts/Droid.Arabic.Kufi.ttf);
+
+  }
+  @font-face {
+	font-family: Rubik;
+	src: url(assets/fonts/Rubik.ttf);
+
+  }
 
 
 
 body {
-	font-family: 'Rubik', sans-serif;
+	font-family: Droid Arabic Kufi,Rubik, sans-serif;
 	font-size: 0.875rem;
 	color: #666;
 	background-color: #fafafa;
@@ -76,12 +86,12 @@ body {
 	height: 100%;
 }
 body:lang(ar){
-	font-family:'Droid Arabic Kufi','Rubik'; 
+	font-family:Droid Arabic Kufi,'Droid Arabic Kufi','Rubik'; 
 }
 @font-face {
-	font-family: myFirstFont;
-	src: url(assets\fonts\jazeera.ttf);
-	font-weight: bold;
+	font-family: Droid Arabic Kufi;
+	src: url(assets\fonts\Droid.Arabic.Kufi.ttf);
+	
   }
 h1,
 h2,

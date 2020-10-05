@@ -1,8 +1,8 @@
 <?php include('header.php')?>
 <?php include('db_connect.php');?>
 <script>
-    var demandes = document.getElementById('demandes');
-    demandes.classList.add("active");
+    var visit = document.getElementById('visit');
+    visit.classList.add("active");
 <?php 
 
 		$sql1 = "SELECT * ,DATE_FORMAT(date_v, '%d/%m/%Y') as date_v FROM patient where 1=1 " ;
@@ -44,10 +44,10 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-2 col-3">
-			<a href="add-demande.php" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> اضافة طلب </a>
+			<a href="add-visit.php" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> اضافة معاينة </a>
             </div>
             <div class="col-sm-10 col-9 text-right m-b-20">
-				<h4 class="page-title">طلبات الاشتراك</h4>
+				<h4 class="page-title">لائحة المعاينات</h4>
                 
             </div>
         </div>
@@ -55,7 +55,7 @@
 
 			<div  class="col-sm-4 col-md-4 dem-table ">
 			
-				<strong style="padding: 5px;" class="chart-title">البحث عن طريق تاريخ طلب الاشتراك</strong>
+				<strong style="padding: 5px;" class="chart-title">البحث عن طريق تاريخ المعاينة</strong>
             </div>
 
 		
@@ -82,7 +82,10 @@
 							<table class="table table-border table-striped" id="example">
 								<thead>
 								<tr>
-												
+                                                
+                                                    <td>
+                                                    <input value="<?php echo $Prenom ?>" name="Prenom" placeholder="رقم المعاينة" type="text" class="form-control" >
+													</td>
 													<td>
 														<input value="<?php echo $Prenom ?>" name="Prenom" placeholder="الاسم" type="text" class="form-control" >
 													</td>
@@ -99,9 +102,7 @@
 													<td>
 														<input value="<?php echo $Email ?>" name="Email" placeholder="منطقة السكن" type="text" class="form-control" >
 													</td>
-													<td>
-														
-													</td>
+													
 													<td>
 													<input class="btn btn-success btn-block"  type="submit" value="بحث"  />
 													<button class="btn btn-warning btn-block" onclick="window.location.href='demandes.php'" type="button">الغاء</button>

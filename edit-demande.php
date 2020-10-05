@@ -28,9 +28,7 @@
     label,h5{
         float:right;
     }
-    .col-sm-3 {
-    float: right !important;
-}
+    
 </style>
 
 
@@ -85,7 +83,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                                <label>منطفة السكن <span class="text-danger">*</span> </label>
+                                                <label>منطفة السكن </label>
 												<select id="sexe" name="sexe" class="form-control ">
 													<option>01-أدوز</option>
 													<option>02-البام</option>
@@ -95,7 +93,7 @@
                                 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label> رقم الهاتف  <span class="text-danger">*</span></label>
+                                        <label> رقم الهاتف </label>
                                         <input style="direction: ltr;" id="nom" name="tele" class="form-control" type="text">
                                     </div>
                                 </div>
@@ -110,23 +108,28 @@
                             <!--start row-->
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <div  class="form-group">
-                                                <label>نوع الملك <span class="text-danger">*</span></label>
-												<select onchange="owner()" id="type_owner" name="" class="form-control ">
-													<option value="yes" >مالك</option>
-													<option value="non">مكتري</option>
+                                    <div class="form-group">
+                                                <label>نوع الملك</label>
+												<select id="sexe" name="sexe" class="form-control ">
+													<option>مالك</option>
+													<option>مكتري</option>
 												</select>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>تاريخ تقديم الطلب <span class="text-danger">*</span></span></label>
+                                            <label>تاريخ تقديم الطلب</span></label>
                                             <div sty class="cal-icon">
                                                 <input style="direction: ltr;" id="date_n" name="date_n"  type="text" class="form-control datetimepicker">
                                             </div>
                                         </div>
                                 </div>
-                                
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>  رسوم تقديم الطلب (درهم) </label>
+                                        <input style="direction: ltr;" value='150' id="nom" name="nom" class="form-control" type="email">
+                                    </div>
+                                </div>
                             </div>
                             <!--end row-->
                             <h5 style="color: #009EFB;" >المرفقات</h5>
@@ -134,7 +137,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label>البطافة الوطنية <span class="text-danger">*</span></label>
+                                            <label>البطافة الوطنية</label>
                                             <div class="profile-upload">
                                                 <div class="upload-input">
                                                     <input type="file" class="form-control">
@@ -144,7 +147,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label> الملكية <span class="text-danger">*</span> </label>
+                                            <label> الملكية او موافقة المالك </label>
                                             <div class="profile-upload">
                                                 <div class="upload-input">
                                                     <input type="file" class="form-control">
@@ -164,21 +167,6 @@
                                 </div>
                             </div>
                             <!--end row-->
-                            <!--start row-->
-                            <div class="row">
-                            <div id="owner_app" style="display: none;" class="col-sm-4">
-                                        <div class="form-group">
-                                            <label> موافقة المالك <span class="text-danger">*</span> </label>
-                                            <div class="profile-upload">
-                                                <div class="upload-input">
-                                                    <input type="file" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                            <!--end row-->
-
                        
                            
                             
@@ -187,29 +175,8 @@
                     </div>
                 </div>
                 <br>
-                <!--start row-->
-                
-                <!--end row-->
-                    <div  class=" text-center ">
-                        <div   class="row">
-                            
-                            
-                            
-                            
-                            
-                            <div class="col-sm-3">
-                            <button type="button" class="btn btn-success btn-submit">اداء</button>
-                            </div>
-                            <div class="col-sm-3">
-                            <button type="button" class="btn btn-secondary">طباعة</button>
-                            </div>
-                            <div class="col-sm-3">
-                            <button type="button" class="btn btn-danger">تحرير</button>
-                            </div>
-                            <div class="col-sm-3">
-                            <button type="button" class="btn btn-primary">اضافة الطلب</button>
-                            </div>
-                     </div>
+                <div class=" text-center">
+                                <button class="btn btn-primary submit-btn">تعديل الطلب</button>
                             </div>
                             </form>
 			

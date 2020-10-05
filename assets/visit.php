@@ -1,8 +1,8 @@
 <?php include('header.php')?>
 <?php include('db_connect.php');?>
 <script>
-    var demandes = document.getElementById('demandes');
-    demandes.classList.add("active");
+    var factures = document.getElementById('factures');
+    factures.classList.add("active");
 <?php 
 
 		$sql1 = "SELECT * ,DATE_FORMAT(date_v, '%d/%m/%Y') as date_v FROM patient where 1=1 " ;
@@ -55,7 +55,7 @@
 
 			<div  class="col-sm-4 col-md-4 dem-table ">
 			
-				<strong style="padding: 5px;" class="chart-title">البحث عن طريق تاريخ طلب الاشتراك</strong>
+				<strong style="padding: 5px;" class="chart-title">البحث عن طريق تاريخ الفاتورة</strong>
             </div>
 
 		
@@ -78,44 +78,53 @@
             
         </div>
         <div class="dem-table">
-			<form action="demandes.php" method="POST" autocomplete="off">
+			<form action="factures.php" method="POST" autocomplete="off">
 							<table class="table table-border table-striped" id="example">
 								<thead>
 								<tr>
 												
 													<td>
-														<input value="<?php echo $Prenom ?>" name="Prenom" placeholder="الاسم" type="text" class="form-control" >
+														
+															<select id="" name="" class="form-control ">
+																<option> 	&nbsp;	&nbsp;مدفوعة	&nbsp;	&nbsp;</option>
+																<option> 	&nbsp;	&nbsp;لم تدفع 	&nbsp;	&nbsp;</option>
+															</select>
+														
 													</td>
 													<td>
-														<input value="<?php echo $Nom ?>" name="Nom" placeholder="النسب" type="text" class="form-control" >
+														<input value="<?php echo $Prenom ?>" name="Prenom" placeholder="رقم العقدة" type="text" class="form-control" >
+													</td>
+													<td>
+														<input value="<?php echo $Nom ?>" name="Nom" placeholder="رقم العداد" type="text" class="form-control" >
 														
 													</td>
 													<td>
 														<input value="<?php echo $CIN ?>" name="CIN" placeholder="رقم البطاقة الوطنية" type="text" class="form-control" >
 													</td>
 													<td>
-														<input value="<?php echo $Tele ?>" name="Tele" placeholder="رقم الهاتف" type="text" class="form-control" >
+														<input value="<?php echo $Tele ?>" name="Tele" placeholder="تاريخ الفاتورة" type="text" class="form-control" >
 													</td>
+													
 													<td>
 														<input value="<?php echo $Email ?>" name="Email" placeholder="منطقة السكن" type="text" class="form-control" >
-													</td>
-													<td>
-														
-													</td>
+                                                    </td>
+                                                    <td></td>
+													
 													<td>
 													<input class="btn btn-success btn-block"  type="submit" value="بحث"  />
-													<button class="btn btn-warning btn-block" onclick="window.location.href='demandes.php'" type="button">الغاء</button>
+													<button class="btn btn-warning btn-block" onclick="window.location.href='factures.php'" type="button">الغاء</button>
 													</td>
 													
 												
 										</tr>
 									<tr>
-										<th  style='text-align: center;' >الاسم</th>
-										<th style='text-align: center;'>النسب</th>
-										<th style='text-align: center;'>رقم  ب.و</th>
-										<th style='text-align: center;'>الهاتف</th>
-										<th style='text-align: center;'> تاريخ تقديم الطلب </th>
+									<th  style='text-align: center;' > الاسم و النسب</th>
+										<th  style='text-align: center;' >رقم العقدة</th>
+										<th style='text-align: center;'>رقم العداد"</th>
+										<th style='text-align: center;'>رقم البطاقة الوطنية</th>
 										<th style='text-align: center;'>منطقة السكن</th>
+										<th style='text-align: center;'> تاريخ الفاتورة</th>
+										<th style='text-align: center;'> الحالة </th>
 										<th style='text-align: center;' class="text-right">اجراء</th>
 										
 									</tr>
@@ -127,22 +136,23 @@
 											<?php while($row1=mysqli_fetch_array($result1)) {?>
 												
 												<tr clicable >
-													<td style='text-align: center;' data-href="pv.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['prenom'] ?></td>
-													<td style='text-align: center;' data-href="pv.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['nom'] ?></td>
-													<td style='text-align: center;' data-href="pv.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['CIN'] ?></td>
-													<td style='text-align: center; direction: ltr;' data-href="patient_info.php?id=<?php echo $row1['idPatient'] ?>" ><?php echo $row1['tele'] ?></td>
-													<td style='text-align: center;' data-href="pv.php?id=<?php echo $row1['idPatient'] ?>"><?php echo $row1['date_n'] ?></td>
-													<td style='text-align: center;' data-href="pv.php?id=<?php echo $row1['idPatient'] ?>">Beni Mellal</td>
+													<td style='text-align: center;' ><?php echo $row1['prenom'] ?></td>
+													<td style='text-align: center;' ><?php echo $row1['nom'] ?></td>
+													<td style='text-align: center;' ><?php echo $row1['CIN'] ?></td>
+													<td style='text-align: center; direction: ltr;'  ><?php echo $row1['tele'] ?></td>
+													<td style='text-align: center;' ><?php echo $row1['date_n'] ?></td>
+													<td style='text-align: center;' ><?php echo $row1['date_n'] ?></td>
+													<td style='text-align: center;' >
+													<button type="button" class="btn btn-success " >مدفوعة</button>
+													</td>
 													
 													<td  class="text-right">
 														<div class="dropdown dropdown-action">
 															<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 															<div class="dropdown-menu dropdown-menu-right">
-																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> قبول او رفض </a>
-																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة الطلب </a>
-																<a class="dropdown-item" href="edit-demande.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-pencil m-r-5"></i> تعديل الطلب </a>
-																<a class="dropdown-item" type="button" onclick="conf_supp(<?php echo $row1['idPatient']?>)" href="" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> حذف الطلب </a>
-																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة التزام </a>
+																<a class="dropdown-item" href="edit-demande.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-pencil m-r-5"></i> تعديل الفاتورة </a>
+																<a class="dropdown-item" type="button" onclick="conf_supp(<?php echo $row1['idPatient']?>)" href="" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> حذف الفاتورة </a>
+																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة توصيل </a>
 																
 															</div>
 														</div>

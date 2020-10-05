@@ -2,8 +2,8 @@
 <?php include('header.php') ?>
 <?php include('db_connect.php');?>
 <script>
-    var abonne = document.getElementById('abonne');
-    abonne.classList.add("active");
+    var visit = document.getElementById('visit');
+    visit.classList.add("active");
 
 </script>
 <?php
@@ -46,6 +46,18 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
+                                        <label class="d-flex justify-content-center" > رقم طلب الاشتراك </label>
+                                        <select  class="js-example-basic-single form-control " name="state">
+                                             <option selected disabled value="0">رقم طلب الاشتراك</option>
+                                            <option value="AL">01/2020</option>
+                                            <option value="WY">02/2020</option>
+                                            <option value="WY">03/2020</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
                                         <label >الاسم <span class="text-danger">*</span></label>
                                         <input id="prenom" name="prenom" class="form-control" type="text">
                                     </div>
@@ -56,15 +68,7 @@
                                         <input id="nom" name="nom" class="form-control" type="text">
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                                <label>الجنس <span class="text-danger">*</span></label>
-												<select id="sexe" name="sexe" class="form-control ">
-													<option>ذكر</option>
-													<option>انثى</option>
-												</select>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label> رقم البطاقة الوطنية <span class="text-danger">*</span> </label>
@@ -108,17 +112,17 @@
                             <!--start row-->
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <div class="form-group">
+                                    <div  class="form-group">
                                                 <label>نوع الملك</label>
-												<select id="sexe" name="sexe" class="form-control ">
-													<option>مالك</option>
-													<option>مكتري</option>
+												<select onchange="owner()" id="type_owner" name="" class="form-control ">
+													<option value="yes" >مالك</option>
+													<option value="non">مكتري</option>
 												</select>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label>تاريخ  الاشتراك</span></label>
+                                            <label>تاريخ المعاينة</span></label>
                                             <div sty class="cal-icon">
                                                 <input style="direction: ltr;" id="date_n" name="date_n"  type="text" class="form-control datetimepicker">
                                             </div>
@@ -126,57 +130,14 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label>  رسوم الاشتراك  </label>
+                                        <label>  رسوم المعاينة (درهم) </label>
                                         <input style="direction: ltr;" value='150' id="nom" name="nom" class="form-control" type="email">
                                     </div>
                                 </div>
                             </div>
                             <!--end row-->
-                            <h5 style="color: #009EFB;" >المرفقات</h5>
-                            <!--start row-->
-                            <div class="row">
-                                <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>البطافة الوطنية</label>
-                                            <div class="profile-upload">
-                                                <div class="upload-input">
-                                                    <input type="file" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label> الملكية او موافقة المالك </label>
-                                            <div class="profile-upload">
-                                                <div class="upload-input">
-                                                    <input type="file" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label> التصميم </label>
-                                            <div class="profile-upload">
-                                                <div class="upload-input">
-                                                    <input type="file" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label> الالتزام </label>
-                                            <div class="profile-upload">
-                                                <div class="upload-input">
-                                                    <input type="file" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                            <!--end row-->
+                            
+
                        
                            
                             
@@ -186,7 +147,7 @@
                 </div>
                 <br>
                 <div class=" text-center">
-                                <button class="btn btn-primary submit-btn">اضافة مشترك</button>
+                                <button class="btn btn-primary submit-btn">اضافة طلب</button>
                             </div>
                             </form>
 			

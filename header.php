@@ -68,14 +68,17 @@
                         <li id='demandes'>
                             <a href="demandes.php"><i class="fa fa-key"></i> <span>&nbsp;طلبات الاشتراك&nbsp;</span></a>
                         </li>
+                        <li id='visit'>
+                            <a href="visit.php"><i class="fa fa-eye"></i> <span>&nbsp;معاينة&nbsp;</span></a>
+                        </li>
                         <li id='abonne' >
                             <a href="abonne.php"><i class="fa fa-user"></i> <span>&nbsp;المشتركين&nbsp;</span></a>
                         </li>
-                        <li id='ordonnances' >
-                            <a href="ordonnances.php"> <i class="fa fa-calendar-check-o"></i> <span> &nbsp;الفواتير&nbsp;  </span></a>
+                        <li id='factures' >
+                            <a href="factures.php"> <i class="fa fa-calendar-check-o"></i> <span> &nbsp;الفواتير&nbsp;  </span></a>
                         </li>
-                        <li id='factures'>
-                            <a href="factures.php"><i class="fa fa-money"></i> <span> &nbsp;الديون&nbsp; </span></a>
+                        <li id='dette'>
+                            <a href="dette.php"><i class="fa fa-money"></i> <span> &nbsp;الديون&nbsp; </span></a>
                         </li>
                         <li id='produit'>
                             <a href="produit.php"><i class="fa fa-laptop"></i> <span> &nbsp; المنتجات&nbsp;  </span></a>

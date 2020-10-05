@@ -41,7 +41,7 @@
     }
     
 </style>
-<div class="page-wrapper">
+<div  class="page-wrapper d-flex justify-content-center">
     <div class="content">
         <div class="row">
             <div class="col-sm-2 col-3">
@@ -53,7 +53,7 @@
             </div>
         </div>
         
-        <div class="dem-table">
+        <div  class="dem-table">
 			<form action="patients.php" method="POST" autocomplete="off">
 							<table class="table table-border table-striped" id="example">
 								<thead>

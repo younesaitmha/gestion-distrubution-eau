@@ -136,10 +136,10 @@
 														<div class="dropdown dropdown-action">
 															<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 															<div class="dropdown-menu dropdown-menu-right">
-																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> قبول او رفض </a>
-																<a class="dropdown-item" href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة الطلب </a>
-																<a class="dropdown-item" href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-pencil m-r-5"></i> تعديل الطلب </a>
+																<a class="dropdown-item" href="devis.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> انشاء تسعيرة </a>
+																<a class="dropdown-item" href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-pencil m-r-5"></i> تعديل المشترك </a>
 																<a class="dropdown-item" type="button" onclick="conf_supp(<?php echo $row1['idPatient']?>)" href="" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> حذف المشترك </a>
+																<a class="dropdown-item" href="edit-abonn.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-circle m-r-5"></i>  اعادة الربط </a>
 																
 															</div>
 														</div>

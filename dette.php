@@ -1,8 +1,8 @@
 <?php include('header.php')?>
 <?php include('db_connect.php');?>
 <script>
-    var demandes = document.getElementById('demandes');
-    demandes.classList.add("active");
+    var dette = document.getElementById('dette');
+    dette.classList.add("active");
 <?php 
 
 		$sql1 = "SELECT * ,DATE_FORMAT(date_v, '%d/%m/%Y') as date_v FROM patient where 1=1 " ;
@@ -44,10 +44,10 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-2 col-3">
-			<a href="add-demande.php" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> اضافة طلب </a>
+			<a href="add-demande.php" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> اضافة دين </a>
             </div>
             <div class="col-sm-10 col-9 text-right m-b-20">
-				<h4 class="page-title">طلبات الاشتراك</h4>
+				<h4 class="page-title">الديون</h4>
                 
             </div>
         </div>
@@ -55,7 +55,7 @@
 
 			<div  class="col-sm-4 col-md-4 dem-table ">
 			
-				<strong style="padding: 5px;" class="chart-title">البحث عن طريق تاريخ طلب الاشتراك</strong>
+				<strong style="padding: 5px;" class="chart-title">البحث عن طريق تاريخ الدين</strong>
             </div>
 
 		
@@ -114,7 +114,7 @@
 										<th style='text-align: center;'>النسب</th>
 										<th style='text-align: center;'>رقم  ب.و</th>
 										<th style='text-align: center;'>الهاتف</th>
-										<th style='text-align: center;'> تاريخ تقديم الطلب </th>
+										<th style='text-align: center;'> تاريخ الدين </th>
 										<th style='text-align: center;'>منطقة السكن</th>
 										<th style='text-align: center;' class="text-right">اجراء</th>
 										
@@ -138,11 +138,9 @@
 														<div class="dropdown dropdown-action">
 															<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 															<div class="dropdown-menu dropdown-menu-right">
-																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> قبول او رفض </a>
-																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة الطلب </a>
-																<a class="dropdown-item" href="edit-demande.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-pencil m-r-5"></i> تعديل الطلب </a>
-																<a class="dropdown-item" type="button" onclick="conf_supp(<?php echo $row1['idPatient']?>)" href="" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> حذف الطلب </a>
-																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة التزام </a>
+																<a class="dropdown-item" href="edit-demande.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-pencil m-r-5"></i> تعديل الدين </a>
+																<a class="dropdown-item" type="button" onclick="conf_supp(<?php echo $row1['idPatient']?>)" href="" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> حذف الدين </a>
+																<a class="dropdown-item" href="pv.php?id=<?php echo $row1['idPatient'] ?>"><i class="fa fa-print m-r-5"></i> طباعة توصيل </a>
 																
 															</div>
 														</div>
