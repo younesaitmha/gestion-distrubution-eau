@@ -10,7 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema EAU
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `EAU` DEFAULT CHARACTER SET utf8 ;
+CREATE DATABASE IF NOT EXISTS `EAU` DEFAULT CHARACTER SET utf8 ;
 USE `EAU` ;
 
 -- -----------------------------------------------------
@@ -18,7 +18,7 @@ USE `EAU` ;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`Demandeur` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`Demandeur` (
+CREATE TABLE `EAU`.`Demandeur` (
   `idDemandeur` INT NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(100) NOT NULL,
   `prenom` VARCHAR(100) NOT NULL,
@@ -30,11 +30,11 @@ CREATE TABLE IF NOT EXISTS `EAU`.`Demandeur` (
   `email` VARCHAR(50) NULL,
   `typeProp` VARCHAR(45) NOT NULL,
   `dateDemande` DATE NOT NULL,
-  `cinFichier` MEDIUMBLOB NOT NULL,
-  `propriete` MEDIUMBLOB NOT NULL,
+  `cinFichier` MEDIUMBLOB  NULL,
+  `propriete` MEDIUMBLOB  NULL,
   `plan` MEDIUMBLOB NULL,
   `accord` MEDIUMBLOB NULL,
-  `abonnee` BOOLEAN NULL,
+  `abonnee` BOOLEAN DEFAULT 0,
   `numeroAbonnee` VARCHAR(45) NULL,
   PRIMARY KEY (`idDemandeur`))
 ENGINE = InnoDB;
@@ -45,13 +45,21 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`Autorisation` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`Autorisation` (
+CREATE TABLE `EAU`.`Autorisation` (
   `idAutorisation` INT NOT NULL AUTO_INCREMENT,
-  `datEAUto` DATE NULL,
-  `statusAuto` BOOLEAN NULL,
+  `dateAuto` DATE NULL,
+  `statusAuto` BOOLEAN NOT NULL DEFAULT 0,
   `numAuto` VARCHAR(100) NULL,
-  `AutoFichier` VARCHAR(45) NULL,
-  PRIMARY KEY (`idAutorisation`))
+  `autoFichier` MEDIUMBLOB NULL,
+  `Devis_idDevis` INT NOT NULL,
+   PRIMARY KEY (`idAutorisation`),
+   INDEX (`fk_Autorisation_Devis_idx` (`Devis_idDevis` ASC) VISIBLE),
+   CONSTRAINT `fk_Autorisation_Devis`
+    FOREIGN KEY (`Devis_idDevis`)
+    REFERENCES `EAU`.`Devis` (`idDevis`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+   )
 ENGINE = InnoDB;
 
 
@@ -60,25 +68,25 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`Devis` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`Devis` (
+CREATE TABLE `EAU`.`Devis` (
   `idDevis` INT NOT NULL AUTO_INCREMENT,
   `dateDevis` DATE NOT NULL,
-  `chargeFixe` FLOAT NULL,
-  `ttc` FLOAT NULL,
-  `paye` BOOLEAN NOT NULL,
-  `Autorisation_idAutorisation` INT NOT NULL,
+  `chargeFixe` DOUBLE NULL,
+  `ttc` DOUBLE NULL,
+  `paye` BOOLEAN DEFAULT 0,
   `Demandeur_idDemandeur` INT NOT NULL,
+  'Engagement_idEngagement' INT NOT NULL,
   PRIMARY KEY (`idDevis`),
-  INDEX `fk_Devis_Autorisation1_idx` (`Autorisation_idAutorisation` ASC) VISIBLE,
-  INDEX `fk_Devis_Demandeur1_idx` (`Demandeur_idDemandeur` ASC) VISIBLE,
-  CONSTRAINT `fk_Devis_Autorisation1`
-    FOREIGN KEY (`Autorisation_idAutorisation`)
-    REFERENCES `EAU`.`Autorisation` (`idAutorisation`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Devis_Demandeur1`
+  INDEX (`fk_Devis_Demandeur_idx` (`Demandeur_idDemandeur` ASC) VISIBLE),
+  INDEX (`fk_Devis_Engagement_idx` (`Engagement_idEngagement` ASC) VISIBLE),
+  CONSTRAINT `fk_Devis_Demandeur`
     FOREIGN KEY (`Demandeur_idDemandeur`)
     REFERENCES `EAU`.`Demandeur` (`idDemandeur`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Devis_Engagement`
+    FOREIGN KEY (`Engagement_idEngagement`)
+    REFERENCES `EAU`.`Engagement` (`idEngagement`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -89,24 +97,24 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`Engagement` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`Engagement` (
-  `idEngagement` INT NOT NULL,
-  `fichierEngag` MEDIUMBLOB NOT NULL,
-  `text` TEXT(1000) NULL,
-  `statusEngag` BOOLEAN NULL,
-  `Devis_idDevis` INT NOT NULL,
+CREATE TABLE `EAU`.`Engagement` (
+  `idEngagement` INT NOT NULL AUTO_INCREMENT,
+  `fichierEngag` MEDIUMBLOB NULL,
+  `text` TEXT(10000) NULL,
+  `statusEngag` BOOLEAN DEFAULT 0,
   `Demandeur_idDemandeur` INT NOT NULL,
-  PRIMARY KEY (`idEngagement`, `Demandeur_idDemandeur`),
-  INDEX `fk_Engagement_Devis1_idx` (`Devis_idDevis` ASC) VISIBLE,
-  INDEX `fk_Engagement_Demandeur1_idx` (`Demandeur_idDemandeur` ASC) VISIBLE,
-  CONSTRAINT `fk_Engagement_Devis1`
-    FOREIGN KEY (`Devis_idDevis`)
-    REFERENCES `EAU`.`Devis` (`idDevis`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Engagement_Demandeur1`
+  `Visite_idVisite` INT NOT NULL,
+  PRIMARY KEY (`idEngagement`),
+  INDEX (`fk_Engagement_Visite_idx` (`Visite_idVisite` ASC) VISIBLE),
+  INDEX (`fk_Engagement_Demandeur_idx` (`Demandeur_idDemandeur` ASC) VISIBLE),
+  CONSTRAINT `fk_Engagement_Demandeur`
     FOREIGN KEY (`Demandeur_idDemandeur`)
     REFERENCES `EAU`.`Demandeur` (`idDemandeur`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Engagement_Visite`
+    FOREIGN KEY (`Visite_idVisite`)
+    REFERENCES `EAU`.`Visite` (`idVisite`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -117,14 +125,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`PmViste` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`PmViste` (
-  `idPmViste` INT NOT NULL,
+CREATE TABLE `EAU`.`PmViste` (
+  `idPmViste` INT NOT NULL AUTO_INCREMENT,
   `datePV` DATE NOT NULL,
-  `numRecu` VARCHAR(45) NULL,
-  `statusPmVisite` BOOLEAN,
+  `numRecu` VARCHAR(50) NULL,
+  `statusPmVisite` BOOLEAN DEFAULT 0,
   `Demandeur_idDemandeur` INT NOT NULL,
   PRIMARY KEY (`idPmViste`),
-  INDEX `fk_PmViste_Demandeur_idx` (`Demandeur_idDemandeur` ASC) VISIBLE,
+  INDEX (`fk_PmViste_Demandeur_idx` (`Demandeur_idDemandeur` ASC) VISIBLE),
   CONSTRAINT `fk_PmViste_Demandeur`
     FOREIGN KEY (`Demandeur_idDemandeur`)
     REFERENCES `EAU`.`Demandeur` (`idDemandeur`)
@@ -138,26 +146,19 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`Visite` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`Visite` (
+CREATE TABLE `EAU`.`Visite` (
   `idVisite` INT NOT NULL AUTO_INCREMENT,
   `nomTech` VARCHAR(100) NULL,
-  `statusVisite` BOOLEAN NULL,
+  `statusVisite` BOOLEAN DEFAULT 0,
   `fichierPv` MEDIUMBLOB NULL,
-  `avis` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
+  `avis` BOOLEAN DEFAULT 0,
+  `description` VARCHAR(1000) NULL,
   `PmViste_idPmViste` INT NOT NULL,
-  `Engagement_idEngagement` INT NOT NULL,
   PRIMARY KEY (`idVisite`),
-  INDEX `fk_Visite_PmViste1_idx` (`PmViste_idPmViste` ASC) VISIBLE,
-  INDEX `fk_Visite_Engagement1_idx` (`Engagement_idEngagement` ASC) VISIBLE,
-  CONSTRAINT `fk_Visite_PmViste1`
+  INDEX (`fk_Visite_PmViste_idx` (`PmViste_idPmViste` ASC) VISIBLE),
+  CONSTRAINT `fk_Visite_PmViste`
     FOREIGN KEY (`PmViste_idPmViste`)
     REFERENCES `EAU`.`PmViste` (`idPmViste`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Visite_Engagement1`
-    FOREIGN KEY (`Engagement_idEngagement`)
-    REFERENCES `EAU`.`Engagement` (`idEngagement`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -168,12 +169,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`Produit` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`Produit` (
+CREATE TABLE `EAU`.`Produit` (
   `idProduit` INT NOT NULL AUTO_INCREMENT,
-  `refProduit` VARCHAR(45) NOT NULL,
-  `nomProduit` VARCHAR(45) NOT NULL,
-  `qtProduit` INT NOT NULL,
-  `prixProduit` FLOAT NOT NULL,
+  `refProduit` VARCHAR(70) NOT NULL,
+  `nomProduit` VARCHAR(255) NOT NULL,
+  `qtProduit` DOUBLE NOT NULL,
+  `prixProduit` DOUBLE NOT NULL,
   PRIMARY KEY (`idProduit`))
 ENGINE = InnoDB;
 
@@ -183,18 +184,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`Devis_A_Produit` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`Devis_A_Produit` (
+CREATE TABLE `EAU`.`Devis_A_Produit` (
   `Produit_idProduit` INT NOT NULL,
   `Devis_idDevis` INT NOT NULL,
   PRIMARY KEY (`Produit_idProduit`, `Devis_idDevis`),
-  INDEX `fk_Devis_A_Produit_Devis1_idx` (`Devis_idDevis` ASC) VISIBLE,
-  INDEX `fk_Devis_A_Produit_Produit1_idx` (`Produit_idProduit` ASC) VISIBLE,
-  CONSTRAINT `fk_Devis_A_Produit_Produit1`
+  INDEX (`fk_Devis_A_Produit_Devis_idx` (`Devis_idDevis` ASC) VISIBLE),
+  INDEX (`fk_Devis_A_Produit_Produit_idx` (`Produit_idProduit` ASC) VISIBLE),
+  CONSTRAINT `fk_Devis_A_Produit_Produit`
     FOREIGN KEY (`Produit_idProduit`)
     REFERENCES `EAU`.`Produit` (`idProduit`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Devis_A_Produit_Devis1`
+  CONSTRAINT `fk_Devis_A_Produit_Devis`
     FOREIGN KEY (`Devis_idDevis`)
     REFERENCES `EAU`.`Devis` (`idDevis`)
     ON DELETE NO ACTION
@@ -207,13 +208,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`Compteur` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`Compteur` (
+CREATE TABLE `EAU`.`Compteur` (
   `idCompteur` INT NOT NULL,
-  `diametre` VARCHAR(45) NULL,
+  `diametre` VARCHAR(60) NULL,
   `Demandeur_idDemandeur` INT NOT NULL,
-  PRIMARY KEY (`idcompteur`, `Demandeur_idDemandeur`),
-  INDEX `fk_compteur_Demandeur1_idx` (`Demandeur_idDemandeur` ASC) VISIBLE,
-  CONSTRAINT `fk_compteur_Demandeur1`
+  PRIMARY KEY (`idCompteur`, `Demandeur_idDemandeur`),
+  INDEX (`fk_Compteur_Demandeur_idx` (`Demandeur_idDemandeur` ASC) VISIBLE),
+  CONSTRAINT `fk_Compteur_Demandeur`
     FOREIGN KEY (`Demandeur_idDemandeur`)
     REFERENCES `EAU`.`Demandeur` (`idDemandeur`)
     ON DELETE NO ACTION
@@ -226,25 +227,25 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `EAU`.`Facture` ;
 
-CREATE TABLE IF NOT EXISTS `EAU`.`Facture` (
+CREATE TABLE `EAU`.`Facture` (
   `idfacture` INT NOT NULL AUTO_INCREMENT,
-  `trimestre` INT NULL,
-  `dateFacture` DATE NULL,
-  `paye` TINYINT NULL,
-  `valeur_initiale` DOUBLE NULL,
+  `trimestre` INT NOT NULL,
+  `dateFacture` DATE NOT NULL,
+  `paye` BOOLEAN DEFAULT 0,
+  `valeur_initiale` DOUBLE NOT NULL DEFAULT 0,
   `Demandeur_idDemandeur` INT NOT NULL,
-  `compteur_idcompteur` INT NOT NULL,
-  PRIMARY KEY (`idfacture`, `Demandeur_idDemandeur`, `compteur_idcompteur`),
-  INDEX `fk_facture_Demandeur1_idx` (`Demandeur_idDemandeur` ASC) VISIBLE,
-  INDEX `fk_facture_compteur1_idx` (`compteur_idcompteur` ASC) VISIBLE,
-  CONSTRAINT `fk_facture_Demandeur1`
+  `Compteur_idCompteur` INT NOT NULL,
+  PRIMARY KEY (`idfacture`),
+  INDEX (`fk_Facture_Demandeur_idx` (`Demandeur_idDemandeur` ASC) VISIBLE),
+  INDEX (`fk_Facture_Compteur_idx` (`Compteur_idCompteur` ASC) VISIBLE),
+  CONSTRAINT `fk_Facture_Demandeur`
     FOREIGN KEY (`Demandeur_idDemandeur`)
     REFERENCES `EAU`.`Demandeur` (`idDemandeur`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_facture_compteur1`
-    FOREIGN KEY (`compteur_idcompteur`)
-    REFERENCES `EAU`.`compteur` (`idcompteur`)
+  CONSTRAINT `fk_Facture_Compteur`
+    FOREIGN KEY (`Compteur_idCompteur`)
+    REFERENCES `EAU`.`Compteur` (`idcompteur`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
