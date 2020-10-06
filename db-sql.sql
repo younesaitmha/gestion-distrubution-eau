@@ -228,7 +228,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `EAU`.`Facture` ;
 
 CREATE TABLE `EAU`.`Facture` (
-  `idfacture` INT NOT NULL AUTO_INCREMENT,
+  `idFacture` INT NOT NULL AUTO_INCREMENT,
   `trimestre` INT NOT NULL,
   `dateFacture` DATE NOT NULL,
   `paye` BOOLEAN DEFAULT 0,
@@ -249,6 +249,20 @@ CREATE TABLE `EAU`.`Facture` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+CREATE TABLE `EAU`.`Users` (
+  `idUsers` INT NOT NULL AUTO_INCREMENT,
+  `nom` VARCHAR(100) NOT NULL,
+  `prenom` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `activeCode` VARCHAR(100) NULL,
+  `permission` VARCHAR(100) NOT NULL,
+  `role` ENUM('superAdmin', ) NOT NULL,
+  PRIMARY KEY (`idUsers`))
+ENGINE = InnoDB;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
