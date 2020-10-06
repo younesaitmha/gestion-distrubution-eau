@@ -1,8 +1,7 @@
 -- phpMyAdmin SQL Dump
 -- version 4.9.1
--- https://www.phpmyadmin.net/
---
 -- Host: localhost
+-- 
 -- Generation Time: Oct 05, 2020 at 06:37 PM
 -- Server version: 8.0.17
 -- PHP Version: 7.3.10
@@ -164,14 +163,14 @@ ALTER TABLE `demandeur`
 --
 ALTER TABLE `devis`
   ADD PRIMARY KEY (`idDevis`),
-  ADD KEY `fk_Devis_Autorisation1` (`Autorisation_idAutorisation`);
+  ADD KEY `fk_Devis_Autorisation` (`Autorisation_idAutorisation`);
 
 --
 -- Indexes for table `engagement`
 --
 ALTER TABLE `engagement`
   ADD PRIMARY KEY (`idEngagement`),
-  ADD KEY `fk_Engagement_Devis1` (`Devis_idDevis`);
+  ADD KEY `fk_Engagement_Devis` (`Devis_idDevis`);
 
 --
 -- Indexes for table `pmviste`
@@ -191,15 +190,15 @@ ALTER TABLE `produit`
 --
 ALTER TABLE `produit_has_devis`
   ADD PRIMARY KEY (`Produit_idProduit`,`Devis_idDevis`),
-  ADD KEY `fk_Produit_has_Devis_Devis1` (`Devis_idDevis`);
+  ADD KEY `fk_Produit_has_Devis_Devis` (`Devis_idDevis`);
 
 --
 -- Indexes for table `visite`
 --
 ALTER TABLE `visite`
   ADD PRIMARY KEY (`idVisite`),
-  ADD KEY `fk_Visite_PmViste1` (`PmViste_idPmViste`),
-  ADD KEY `fk_Visite_Engagement1` (`Engagement_idEngagement`);
+  ADD KEY `fk_Visite_PmViste` (`PmViste_idPmViste`),
+  ADD KEY `fk_Visite_Engagement` (`Engagement_idEngagement`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -243,7 +242,7 @@ ALTER TABLE `visite`
 -- Constraints for table `devis`
 --
 ALTER TABLE `devis`
-  ADD CONSTRAINT `fk_Devis_Autorisation1` FOREIGN KEY (`Autorisation_idAutorisation`) REFERENCES `autorisation` (`idAutorisation`);
+  ADD CONSTRAINT `fk_Devis_Autorisation` FOREIGN KEY (`Autorisation_idAutorisation`) REFERENCES `autorisation` (`idAutorisation`);
 
 --
 -- Constraints for table `engagement`
@@ -261,15 +260,15 @@ ALTER TABLE `pmviste`
 -- Constraints for table `produit_has_devis`
 --
 ALTER TABLE `produit_has_devis`
-  ADD CONSTRAINT `fk_Produit_has_Devis_Devis1` FOREIGN KEY (`Devis_idDevis`) REFERENCES `devis` (`idDevis`),
-  ADD CONSTRAINT `fk_Produit_has_Devis_Produit1` FOREIGN KEY (`Produit_idProduit`) REFERENCES `produit` (`idProduit`);
+  ADD CONSTRAINT `fk_Produit_has_Devis_Devis` FOREIGN KEY (`Devis_idDevis`) REFERENCES `devis` (`idDevis`),
+  ADD CONSTRAINT `fk_Produit_has_Devis_Produit` FOREIGN KEY (`Produit_idProduit`) REFERENCES `produit` (`idProduit`);
 
 --
 -- Constraints for table `visite`
 --
 ALTER TABLE `visite`
-  ADD CONSTRAINT `fk_Visite_Engagement1` FOREIGN KEY (`Engagement_idEngagement`) REFERENCES `engagement` (`idEngagement`),
-  ADD CONSTRAINT `fk_Visite_PmViste1` FOREIGN KEY (`PmViste_idPmViste`) REFERENCES `pmviste` (`idPmViste`);
+  ADD CONSTRAINT `fk_Visite_Engagement` FOREIGN KEY (`Engagement_idEngagement`) REFERENCES `engagement` (`idEngagement`),
+  ADD CONSTRAINT `fk_Visite_PmViste` FOREIGN KEY (`PmViste_idPmViste`) REFERENCES `pmviste` (`idPmViste`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

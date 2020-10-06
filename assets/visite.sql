@@ -48,8 +48,8 @@ CREATE TABLE `visite` (
 --
 ALTER TABLE `visite`
   ADD PRIMARY KEY (`idVisite`),
-  ADD KEY `fk_Visite_PmViste1` (`PmViste_idPmViste`),
-  ADD KEY `fk_Visite_Engagement1` (`Engagement_idEngagement`);
+  ADD KEY `fk_Visite_PmViste` (`PmViste_idPmViste`),
+  ADD KEY `fk_Visite_Engagement` (`Engagement_idEngagement`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -69,8 +69,8 @@ ALTER TABLE `visite`
 -- Constraints for table `visite`
 --
 ALTER TABLE `visite`
-  ADD CONSTRAINT `fk_Visite_Engagement1` FOREIGN KEY (`Engagement_idEngagement`) REFERENCES `engagement` (`idEngagement`),
-  ADD CONSTRAINT `fk_Visite_PmViste1` FOREIGN KEY (`PmViste_idPmViste`) REFERENCES `pmviste` (`idPmViste`);
+  ADD CONSTRAINT `fk_Visite_Engagement` FOREIGN KEY (`Engagement_idEngagement`) REFERENCES `engagement` (`idEngagement`),
+  ADD CONSTRAINT `fk_Visite_PmViste` FOREIGN KEY (`PmViste_idPmViste`) REFERENCES `pmviste` (`idPmViste`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
