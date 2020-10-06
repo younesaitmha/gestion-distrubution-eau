@@ -259,7 +259,7 @@ CREATE TABLE `EAU`.`Users` (
   `password` VARCHAR(100) NOT NULL,
   `activeCode` VARCHAR(100) NULL,
   `permission` VARCHAR(100) NOT NULL,
-  `role` ENUM('superAdmin', ) NOT NULL,
+  `role` ENUM('superAdmin', 'admin') NOT NULL,
   PRIMARY KEY (`idUsers`))
 ENGINE = InnoDB;
 
